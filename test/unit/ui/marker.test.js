@@ -57,5 +57,18 @@ test('Marker', (t) => {
         t.end();
     });
 
+    t.test('marker centered by default', (t) => {
+        const map = createMap();
+        const element = window.document.createElement('div');
+        element.style.width = '10px';
+        element.style.height = '10px';
+        element.style.border = '6px solid black';
+
+        const marker = new Marker(element).setLngLat([0,0]).addTo(map);
+        const translate = 512 / 2 - ((10 + 6 + 6) / 2);
+        t.equal(marker.getElement().style.transform, 'translate(' + translate + 'px, ' + translate + 'px)', 'Marker centered');
+        t.end();
+    });
+
     t.end();
 });
