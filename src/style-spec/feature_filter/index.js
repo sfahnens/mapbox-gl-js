@@ -35,6 +35,7 @@ function compile(filter) {
         op === '!in' ? compileNegation(compileInOp(filter[1], filter.slice(2))) :
         op === 'has' ? compileHasOp(filter[1]) :
         op === '!has' ? compileNegation(compileHasOp(filter[1])) :
+        op === 'bit' ? compileBitCheck(filter[1], filter[2]) :
         'true';
     return `(${str})`;
 }
@@ -77,6 +78,11 @@ function compileHasOp(property) {
 
 function compileNegation(expression) {
     return `!(${expression})`;
+}
+
+function compileBitCheck(property, bit) {
+    const left = compilePropertyReference(property);
+    return `((${left} & ( 1 << ${bit} )) === ( 1 << ${bit} ))`;
 }
 
 // Comparison function to sort numbers and strings

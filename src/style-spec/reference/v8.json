@@ -1604,6 +1604,9 @@
       },
       "!has": {
           "doc": "`[\"!has\", key]` `feature[key]` does not exist"
+      },
+      "bit": {
+          "doc": "`[\"bit\", key, nth]` nth bit of `feature[key]` is set"
       }
     },
     "doc": "The filter operator."

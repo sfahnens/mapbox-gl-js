@@ -91,6 +91,11 @@ module.exports = function validateFilter(options) {
         }
         break;
 
+    case 'bit':
+        if (value.length !== 3) {
+            errors.push(new ValidationError(key, value, 'filter array for operator "%s" must have 3 elements', value[0]));
+        }
+        break;
     }
 
     return errors;
